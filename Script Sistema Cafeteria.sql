@@ -1,4 +1,4 @@
-Drop database Sistema_Cafeteria;
+-- Drop database Sistema_Cafeteria;
 create database Sistema_Cafeteria;
 use Sistema_Cafeteria;
 
@@ -33,12 +33,21 @@ create table Movimiento_Moneda(
     
 )engine = InnoDB default charset=latin1;
 
+create table Grupo(
+	ID_Grupo varchar(10) primary key,
+    Nombre_Grupo varchar(50)
+)engine = InnoDB default charset=latin1;
+
 create table Empresa(
 	ID_Empresa varchar(10) primary key,
     Nombre_Empresa varchar(50) not null,
     Direccion_Empresa varchar(80),
     Telefono_Empresa int,
-    Correo_Empresa varchar(50)
+    Correo_Empresa varchar(50),
+    ID_Grupo varchar(10),
+    
+    /*Foranea*/
+    foreign key (ID_Grupo) references Grupo(ID_Grupo)
 )engine = InnoDB default charset=latin1;
 
 create table Serie(
@@ -203,15 +212,6 @@ create table Venta_Detalle (
     foreign key (ID_Empresa) references Empresa (ID_Empresa)
 )engine = InnoDB default charset=latin1;
 
-/*Tablas de la tarea*/
-create table grupo(
-	ID_Grupo varchar(10) primary key,
-    Nombre_Grupo varchar(50),
-    ID_Empresa varchar(10), /*Foranea*/
-    
-    foreign key (ID_Empresa) references Empresa(ID_Empresa)
-)engine = InnoDB default charset=latin1;
-
 create table Usuario( -- login de usuario
 	ID_Usuario varchar(10) primary key,
     Password_Usuario varchar(35) not null,
@@ -226,12 +226,10 @@ create table Personal( /*Multiempresa con diferente ID_Personal y diferente cont
 	ID_Personal varchar(10) primary key,
 	ID_Vendedor varchar(10),
     ID_Empresa varchar(10),
-    ID_Sucursal varchar(10),
     Horario datetime,
     
     foreign key (ID_Vendedor) references Vendedores(ID_Vendedor),
-    foreign key (ID_Empresa) references Empresa(ID_Empresa),
-    foreign key (ID_Sucursal) references Sucursal(ID_Sucursal)
+    foreign key (ID_Empresa) references Empresa(ID_Empresa)
 )engine = InnoDB default charset=latin1;
 
 create table Registro( -- registro de un usuario (para el gerente)
