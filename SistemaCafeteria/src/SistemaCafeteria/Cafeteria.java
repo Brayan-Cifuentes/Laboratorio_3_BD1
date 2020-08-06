@@ -11,13 +11,16 @@ package SistemaCafeteria;
  */
 public class Cafeteria extends javax.swing.JFrame {
 
-    String Base_de_Datos = "jdbc:mysql://localhost/Sistema_Cafeteria";
-    String Usuario = "root";
-    String Clave = "root";
+    public static String Base_de_Datos = "jdbc:mysql://localhost/Sistema_Cafeteria";
+    public static String Usuario = "root";
+    public static String Clave = "admin";
     
     private Empresas VentanaEmpresas;
     private Proveedores VentanaProveedores;
     private Sucursal VentanaSucursal;
+    private Serie Serie;
+    private Marca_Producto Marca;
+    private Linea_Producto Linea;
     /**
      * Creates new form Cafeteria
      */
@@ -90,12 +93,27 @@ public class Cafeteria extends javax.swing.JFrame {
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("Serie");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem4);
 
         jMenuItem5.setText("Marca Producto");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem5);
 
         jMenuItem7.setText("Linea Producto");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem7);
 
         jMenuItem6.setText("Bodega");
@@ -151,6 +169,24 @@ public class Cafeteria extends javax.swing.JFrame {
         VentanaSucursal = new Sucursal();
         jDesktop.add(VentanaSucursal);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        Serie = new Serie ();
+        jDesktop.add(Serie);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        Marca = new Marca_Producto();
+        jDesktop.add(Marca);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        Linea = new Linea_Producto();
+        jDesktop.add(Linea);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
