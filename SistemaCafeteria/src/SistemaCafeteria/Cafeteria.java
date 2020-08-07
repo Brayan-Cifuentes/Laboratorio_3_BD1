@@ -13,7 +13,7 @@ public class Cafeteria extends javax.swing.JFrame {
 
     public static String Base_de_Datos = "jdbc:mysql://localhost/Sistema_Cafeteria";
     public static String Usuario = "root";
-    public static String Clave = "root";
+    public static String Clave = "jorgito5828H";
     
     private Empresas VentanaEmpresas;
     private Proveedores VentanaProveedores;
@@ -59,17 +59,9 @@ public class Cafeteria extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(493, 422));
 
-        javax.swing.GroupLayout jDesktopLayout = new javax.swing.GroupLayout(jDesktop);
-        jDesktop.setLayout(jDesktopLayout);
-        jDesktopLayout.setHorizontalGroup(
-            jDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 781, Short.MAX_VALUE)
-        );
-        jDesktopLayout.setVerticalGroup(
-            jDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 505, Short.MAX_VALUE)
-        );
+        jDesktop.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jMenu1.setText("Catalogos");
 
