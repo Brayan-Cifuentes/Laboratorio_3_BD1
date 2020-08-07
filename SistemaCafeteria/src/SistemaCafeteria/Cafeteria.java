@@ -13,7 +13,7 @@ public class Cafeteria extends javax.swing.JFrame {
 
     public static String Base_de_Datos = "jdbc:mysql://localhost/Sistema_Cafeteria";
     public static String Usuario = "root";
-    public static String Clave = "jorgito5828H";
+    public static String Clave = "root";
     
     private Empresas VentanaEmpresas;
     private Proveedores VentanaProveedores;
@@ -184,20 +184,20 @@ public class Cafeteria extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        VentanaEmpresas = new Empresas();
-        jDesktop.add(VentanaEmpresas);
+        VentanaProveedores = new Proveedores();
+        jDesktop.add(VentanaProveedores);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        VentanaProveedores = new Proveedores();
-        jDesktop.add(VentanaProveedores);
+        VentanaSucursal = new Sucursal();
+        jDesktop.add(VentanaSucursal);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        VentanaSucursal = new Sucursal();
-        jDesktop.add(VentanaSucursal);
+        VentanaEmpresas = new Empresas();
+        jDesktop.add(VentanaEmpresas);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
