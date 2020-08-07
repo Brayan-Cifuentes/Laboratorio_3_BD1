@@ -5,9 +5,14 @@
  */
 package SistemaCafeteria;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 /**
  *
- * @author Brayan Cifuentes
+ * @author Langas
  */
 public class Sucursal extends javax.swing.JInternalFrame {
 
@@ -27,26 +32,201 @@ public class Sucursal extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        txt_ID_Sucursal = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txt_Direccion_Sucursal = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txt_Telefono_Sucursal = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txt_Correo_Sucursal = new javax.swing.JTextField();
+        jButton_Registrar = new javax.swing.JButton();
+        jButton_Modificar = new javax.swing.JButton();
+        jButton_Eliminar = new javax.swing.JButton();
+        label_status = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txt_Buscar = new javax.swing.JTextField();
+        jButton_Buscar = new javax.swing.JButton();
+
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setVisible(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
-        );
+        jLabel1.setText("ID Sucursal");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        txt_ID_Sucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_ID_SucursalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_ID_Sucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 90, -1));
+
+        jLabel2.setText("Direccion Sucursal");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+        getContentPane().add(txt_Direccion_Sucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 90, -1));
+
+        jLabel3.setText("Telefono Sucursal");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+        getContentPane().add(txt_Telefono_Sucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 90, -1));
+
+        jLabel4.setText("Correo Sucursal");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
+        getContentPane().add(txt_Correo_Sucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 90, -1));
+
+        jButton_Registrar.setText("Registrar");
+        jButton_Registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_RegistrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton_Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
+
+        jButton_Modificar.setText("Modificar");
+        jButton_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ModificarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton_Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, -1, -1));
+
+        jButton_Eliminar.setText("Eliminar");
+        jButton_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_EliminarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
+        getContentPane().add(label_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 160, 50));
+
+        jLabel5.setText("Ingrese ID Sucursal");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+        getContentPane().add(txt_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 256, 80, -1));
+
+        jButton_Buscar.setText("Buscar");
+        jButton_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_BuscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 252, 80, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txt_ID_SucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ID_SucursalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_ID_SucursalActionPerformed
+
+    private void jButton_RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegistrarActionPerformed
+        // TODO add your handling code here:
+        try{
+            Connection cn = DriverManager.getConnection(Cafeteria.Base_de_Datos,Cafeteria.Usuario,Cafeteria.Clave);
+            PreparedStatement pst = cn.prepareStatement("insert into Sucursal values(?,?,?,?)");
+
+            pst.setString(1, txt_ID_Sucursal.getText().trim());
+            pst.setString(2, txt_Direccion_Sucursal.getText().trim());
+            pst.setString(3, txt_Telefono_Sucursal.getText().trim());
+            pst.setString(4, txt_Correo_Sucursal.getText().trim());
+            pst.executeUpdate();
+
+            txt_ID_Sucursal.setText("");
+            txt_Direccion_Sucursal.setText("");
+            txt_Telefono_Sucursal.setText("");
+            txt_Correo_Sucursal.setText("");
+            label_status.setText("Registro exitoso.");
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jButton_RegistrarActionPerformed
+
+    private void jButton_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarActionPerformed
+        // TODO add your handling code here:
+        try {
+            String ID = txt_Buscar.getText().trim();
+
+            Connection cn = DriverManager.getConnection(Cafeteria.Base_de_Datos,Cafeteria.Usuario,Cafeteria.Clave);
+            PreparedStatement pst = cn.prepareStatement("update Sucursal set ID_Sucursal = ?,Direccion_Sucursal = ?, Telefono_Sucursal = ?,Correo_Sucursal = ? where ID_Sucursal = " + ID);
+
+            pst.setString(1, txt_ID_Sucursal.getText().trim());
+            pst.setString(2, txt_Direccion_Sucursal.getText().trim());
+            pst.setString(3, txt_Telefono_Sucursal.getText().trim());
+            pst.setString(4, txt_Correo_Sucursal.getText().trim());
+            pst.executeUpdate();
+
+            label_status.setText("Modificación exitosa.");
+
+        } catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jButton_ModificarActionPerformed
+
+    private void jButton_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarActionPerformed
+        // TODO add your handling code here:
+        try {
+            Connection cn = DriverManager.getConnection(Cafeteria.Base_de_Datos,Cafeteria.Usuario,Cafeteria.Clave);
+            PreparedStatement pst = cn.prepareStatement("delete from Sucursal where ID_Sucursal = ?");
+
+            pst.setString(1, txt_Buscar.getText().trim());
+            pst.executeUpdate();
+
+            txt_ID_Sucursal.setText("");
+            txt_Direccion_Sucursal.setText("");
+            txt_Telefono_Sucursal.setText("");
+            txt_Correo_Sucursal.setText("");
+            txt_Buscar.setText("");
+
+            label_status.setText("Registro eliminado.");
+
+        } catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jButton_EliminarActionPerformed
+
+    private void jButton_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarActionPerformed
+        // TODO add your handling code here:
+        try{
+            Connection cn = DriverManager.getConnection(Cafeteria.Base_de_Datos,Cafeteria.Usuario,Cafeteria.Clave);
+            PreparedStatement pst = cn.prepareStatement("select * from Sucursal where ID_Sucursal = ?");
+            pst.setString(1, txt_Buscar.getText().trim());
+
+            ResultSet rs = pst.executeQuery();
+
+            if(rs.next()){
+                txt_ID_Sucursal.setText(rs.getString("ID_Sucursal"));
+                txt_Direccion_Sucursal.setText(rs.getString("Direccion_Sucursal"));
+                txt_Telefono_Sucursal.setText(rs.getString("Telefono_Sucursal"));
+                txt_Correo_Sucursal.setText(rs.getString("Correo_Sucursal"));
+            } else {
+                JOptionPane.showMessageDialog(null, "Sucursal no registrada.");
+            }
+
+        }catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jButton_BuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_Buscar;
+    private javax.swing.JButton jButton_Eliminar;
+    private javax.swing.JButton jButton_Modificar;
+    private javax.swing.JButton jButton_Registrar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel label_status;
+    private javax.swing.JTextField txt_Buscar;
+    private javax.swing.JTextField txt_Correo_Sucursal;
+    private javax.swing.JTextField txt_Direccion_Sucursal;
+    private javax.swing.JTextField txt_ID_Sucursal;
+    private javax.swing.JTextField txt_Telefono_Sucursal;
     // End of variables declaration//GEN-END:variables
 }
