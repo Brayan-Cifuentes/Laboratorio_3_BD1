@@ -11,13 +11,21 @@ package SistemaCafeteria;
  */
 public class Cafeteria extends javax.swing.JFrame {
 
-    String Base_de_Datos = "jdbc:mysql://localhost/Sistema_Cafeteria";
-    String Usuario = "root";
-    String Clave = "root";
+    public static String Base_de_Datos = "jdbc:mysql://localhost/Sistema_Cafeteria";
+    public static String Usuario = "root";
+    public static String Clave = "jorgito5828H";
     
     private Empresas VentanaEmpresas;
     private Proveedores VentanaProveedores;
     private Sucursal VentanaSucursal;
+    private Serie Serie;
+    private Marca_Producto Marca;
+    private Linea_Producto Linea;
+    private Clientes VentanaClientes;
+    private Bodega VentanaBodega;
+    private Division VentanaDivision;
+    private PuestoVendedor ventanaPuesto;
+    private Moneda ventanaMoneda;
     /**
      * Creates new form Cafeteria
      */
@@ -43,9 +51,9 @@ public class Cafeteria extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        jm_Bodega = new javax.swing.JMenuItem();
+        jm_Division = new javax.swing.JMenuItem();
+        jmi_Cliente = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -90,27 +98,67 @@ public class Cafeteria extends javax.swing.JFrame {
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("Serie");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem4);
 
         jMenuItem5.setText("Marca Producto");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem5);
 
         jMenuItem7.setText("Linea Producto");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem7);
 
-        jMenuItem6.setText("Bodega");
-        jMenu1.add(jMenuItem6);
+        jm_Bodega.setText("Bodega");
+        jm_Bodega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_BodegaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jm_Bodega);
 
-        jMenuItem8.setText("Division");
-        jMenu1.add(jMenuItem8);
+        jm_Division.setText("Division");
+        jm_Division.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_DivisionActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jm_Division);
 
-        jMenuItem9.setText("Cliente");
-        jMenu1.add(jMenuItem9);
+        jmi_Cliente.setText("Cliente");
+        jmi_Cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_ClienteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmi_Cliente);
 
         jMenuItem10.setText("Puesto Vendedor");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem10);
 
         jMenuItem11.setText("Moneda");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem11);
 
         jMenuBar1.add(jMenu1);
@@ -151,6 +199,60 @@ public class Cafeteria extends javax.swing.JFrame {
         VentanaSucursal = new Sucursal();
         jDesktop.add(VentanaSucursal);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        Serie = new Serie ();
+        jDesktop.add(Serie);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        Marca = new Marca_Producto();
+        jDesktop.add(Marca);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        Linea = new Linea_Producto();
+        jDesktop.add(Linea);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jm_BodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_BodegaActionPerformed
+
+        VentanaBodega = new Bodega();
+        jDesktop.add(VentanaBodega);
+        
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jm_BodegaActionPerformed
+
+    private void jm_DivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_DivisionActionPerformed
+
+        VentanaDivision = new Division();
+        jDesktop.add(VentanaDivision);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jm_DivisionActionPerformed
+
+    private void jmi_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ClienteActionPerformed
+
+        VentanaClientes = new Clientes();
+        jDesktop.add(VentanaClientes);
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jmi_ClienteActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+    ventanaPuesto = new PuestoVendedor();
+    jDesktop.add(ventanaPuesto);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        ventanaMoneda = new Moneda();
+        jDesktop.add(ventanaMoneda);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,9 +301,9 @@ public class Cafeteria extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jm_Bodega;
+    private javax.swing.JMenuItem jm_Division;
+    private javax.swing.JMenuItem jmi_Cliente;
     // End of variables declaration//GEN-END:variables
 }

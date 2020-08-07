@@ -7,7 +7,7 @@ package SistemaCafeteria;
 
 /**
  *
- * @author Langas
+ * @author Brayan Cifuentes
  */
 public class Sucursal extends javax.swing.JInternalFrame {
 
