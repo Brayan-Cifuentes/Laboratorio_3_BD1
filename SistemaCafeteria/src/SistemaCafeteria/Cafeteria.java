@@ -12,8 +12,8 @@ package SistemaCafeteria;
 public class Cafeteria extends javax.swing.JFrame {
 
     public static String Base_de_Datos = "jdbc:mysql://localhost/Sistema_Cafeteria";
-    public static String Usuario = "rex";
-    public static String Clave = "polloloco900";
+    public static String Usuario = "root";
+    public static String Clave = "jorgito5828H";
     
     private Empresas VentanaEmpresas;
     private Proveedores VentanaProveedores;
@@ -24,6 +24,8 @@ public class Cafeteria extends javax.swing.JFrame {
     private Clientes VentanaClientes;
     private Bodega VentanaBodega;
     private Division VentanaDivision;
+    private PuestoVendedor ventanaPuesto;
+    private Moneda ventanaMoneda;
     /**
      * Creates new form Cafeteria
      */
@@ -144,9 +146,19 @@ public class Cafeteria extends javax.swing.JFrame {
         jMenu1.add(jmi_Cliente);
 
         jMenuItem10.setText("Puesto Vendedor");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem10);
 
         jMenuItem11.setText("Moneda");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem11);
 
         jMenuBar1.add(jMenu1);
@@ -229,6 +241,18 @@ public class Cafeteria extends javax.swing.JFrame {
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jmi_ClienteActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+    ventanaPuesto = new PuestoVendedor();
+    jDesktop.add(ventanaPuesto);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        ventanaMoneda = new Moneda();
+        jDesktop.add(ventanaMoneda);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     /**
      * @param args the command line arguments
