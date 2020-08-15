@@ -56,7 +56,7 @@ create table Serie(
 )engine = InnoDB default charset=latin1;
 
 create table Compra_Encabezado(
-	ID_Compra_Enc varchar(10) primary key,
+	ID_Compra_Enc varchar(10),
 	ID_Serie varchar(10), /*Foranea*/
     ID_Sucursal varchar(10), /*Foranea*/
     ID_Empresa varchar(10), /*Foranea*/
@@ -65,6 +65,9 @@ create table Compra_Encabezado(
     ID_Moneda varchar(10), /*Foranea*/
     ID_Proveedor varchar(10), /*Foranea*/
     CompraE_Estatus char(1),
+    
+    primary key (ID_Compra_Enc, ID_Serie, ID_Sucursal, ID_Empresa),
+    
     /*Foraneas*/
     foreign key (ID_Proveedor) references Proveedores(ID_Proveedor),
     foreign key (ID_Serie) references Serie(ID_Serie),
@@ -118,15 +121,22 @@ create table Existencias (
 
 create table Compra_Detalle(
 	ID_Compra_Enc varchar (10), /*Foranea*/
-    ID_Sucursal varchar(10), /*Foranea*/
     ID_Empresa varchar(10), /*Foranea*/
+    ID_Serie varchar(10), /*Foranea*/
+    ID_Sucursal varchar(10), /*Foranea*/
     ID_Producto varchar(10), /*Foranea*/
+    Orden_Compra varchar(10),
+    Fecha_Compra date,
     Cantidad_compra int,
+    Compra_Costo float,
+    
+    primary key(ID_Compra_Enc, ID_Empresa, ID_Serie, ID_Sucursal, ID_Producto, Orden_Compra),
     
     /*Llaves foraneas*/
 	foreign key (ID_Compra_Enc) references Compra_Encabezado (ID_Compra_Enc),
-    foreign key (ID_Sucursal) references Sucursal (ID_Sucursal),
     foreign key (ID_Empresa) references Empresa (ID_Empresa),
+    foreign key (ID_Serie) references Serie(ID_Serie),
+    foreign key (ID_Sucursal) references Sucursal (ID_Sucursal),
     foreign key (ID_Producto) references Productos (ID_Producto)
 )engine = InnoDB default charset=latin1;
 
@@ -182,6 +192,7 @@ create table Venta_Encabezado(
     ID_Moneda varchar(10), /*Foranea*/
     Total_Venta float,
     Fecha_Venta date,
+    VentaE_Estatus char(1),
     
     /*Primarias*/
     primary key (ID_VentaEnc, ID_Empresa, ID_Sucursal, ID_Serie),
@@ -197,32 +208,27 @@ create table Venta_Encabezado(
 create table Venta_Detalle (
 	ID_VentaEnc varchar(10), /*Foranea*/
     ID_Empresa varchar(10), /*Foranea*/
+    ID_Serie varchar(10), /*Foranea*/
     ID_Sucursal varchar(10), /*Foranea*/
     ID_Producto varchar(10), /*Foranea*/
+    Orden_Venta varchar(10),
     Fecha_Venta date,
     Cantidad_Venta int,
 	Costo_Venta float,
     Precio_Venta float,
-    Orden_Venta varchar(10) primary key,
+    
+    primary key (ID_VentaEnc, ID_Empresa, ID_Serie, ID_Sucursal, ID_Producto, Orden_Venta),
     
     /*Llaves foraneas*/
+    foreign key (ID_Serie) references Serie(ID_Serie),
     foreign key (ID_VentaEnc) references Venta_Encabezado (ID_VentaEnc),
     foreign key (ID_Producto) references Productos (ID_Producto),
     foreign key (ID_Sucursal) references Sucursal (ID_Sucursal),
     foreign key (ID_Empresa) references Empresa (ID_Empresa)
 )engine = InnoDB default charset=latin1;
 
-create table Usuario( -- login de usuario
-	ID_Usuario varchar(10) primary key,
-    Password_Usuario varchar(35) not null,
-    ID_Empresa varchar(10), /*Foranea*/
-    Sesiones varchar(60),
-    IP varchar(15),
-    /*Para saber a que empresa va a entrar el administrador*/
-    foreign key (ID_Empresa) references Empresa(ID_Empresa)
-)engine = InnoDB default charset=latin1;
-
-create table Personal( /*Multiempresa con diferente ID_Personal y diferente contraseña en el registro*/
+/*
+create table Personal( Multiempresa con diferente ID_Personal y diferente contraseña en el registro
 	ID_Personal varchar(10) primary key,
 	ID_Vendedor varchar(10),
     ID_Empresa varchar(10),
@@ -232,10 +238,119 @@ create table Personal( /*Multiempresa con diferente ID_Personal y diferente cont
     foreign key (ID_Empresa) references Empresa(ID_Empresa)
 )engine = InnoDB default charset=latin1;
 
-create table Registro( -- registro de un usuario (para el gerente)
-	ID_Personal varchar(10), /*Foranea*/
+create table Registro(  registro de un usuario (para el gerente)
+	ID_Personal varchar(10), /*Foranea
     Password_Personal varchar(35),
     
-    /*Foranea*/
+    /*Foranea
     foreign key (ID_Personal) references Personal(ID_Personal) 
+)engine = InnoDB default charset=latin1;*/
+
+create table Credito_Proveedor(
+	ID_Compra_Enc varchar(10), -- ID_Proveedor
+    -- Tipo_Credito varchar(50), -- proveedor      
+    Tipo_Pago varchar(35),											    
+    Plazo_Credito date,												   
+    Cuota float,
+    Total float,
+    Saldo float,
+    
+    /*Foraneas*/
+    foreign key (ID_Compra_Enc) references Compra_Encabezado(ID_Compra_Enc)
 )engine = InnoDB default charset=latin1;
+
+create table Credito_Cliente(
+	ID_VentaEnc varchar(10), -- ID_Cliente
+    -- Tipo_Credito varchar(50), -- cliente      
+    Tipo_Pago varchar(35),											    
+    Plazo_Credito date,												   
+    Cuota float,
+    Total float,
+    Saldo float,
+    
+    /*Foraneas*/
+    foreign key (ID_VentaEnc) references Venta_Encabezado(ID_VentaEnc)
+)engine = InnoDB default charset=latin1;
+
+/*Seguridad*/
+create table Perfiles(
+	ID_Perfil varchar(10) primary key,
+    Tipo_Perfil varchar(35)
+)engine = InnoDB default charset=latin1;
+
+create table Usuario( -- login de usuario
+	ID_Usuario varchar(10) primary key,
+    Password_Usuario varchar(35) not null,
+    ID_Empresa varchar(10), /*Foranea*/
+    ID_Perfil varchar(10),
+   
+    /*Para saber a que empresa va a entrar el administrador*/
+    foreign key (ID_Empresa) references Empresa(ID_Empresa),
+    foreign key (ID_Perfil) references Perfiles(ID_Perfil)
+)engine = InnoDB default charset=latin1;
+
+create table Bitacora_Usuarios(
+	ID_Usuario varchar(10),
+	Sesiones varchar(60),
+    IP varchar(15),
+    FechaHora_Entrada datetime,
+    FechaHora_Salida datetime,
+    
+    foreign key (ID_Usuario) references Usuario(ID_Usuario)
+)engine = InnoDB default charset=latin1;
+
+create table Aplicaciones(
+	ID_Aplicacion varchar(10) primary key,
+    Nombre_Aplicacion varchar(35)
+)engine = InnoDB default charset=latin1;
+
+create table Modulos(
+	ID_Modulo varchar(10) primary key,
+    Nombre_Modulo varchar(35),
+    Tipo_Modulo varchar(35)
+)engine = InnoDB default charset=latin1;
+
+create table Aplicaciones_Modulo(
+	ID_Aplicacion varchar(10),
+    ID_Modulo varchar(10),	
+    primary key (ID_Aplicacion, ID_Modulo),
+    
+    foreign key (ID_Aplicacion) references Aplicaciones(ID_Aplicacion),
+    foreign key (ID_Modulo) references Modulos(ID_Modulo)
+)engine = InnoDB default charset=latin1;
+
+create table Usuario_Aplicacion(
+	ID_Usuario varchar(10),
+    ID_Aplicacion varchar(10),
+    primary key (ID_Usuario, ID_Aplicacion),
+    
+    foreign key (ID_Usuario) references Usuario(ID_Usuario),
+    foreign key (ID_Aplicacion) references Aplicaciones(ID_Aplicacion)
+)engine = InnoDB default charset=latin1;
+
+create table Permisos(
+	ID_Permiso varchar(10) primary key,
+	/*Administrador*/
+	IngresarUser boolean, 
+	ModificarUser boolean, 
+	EliminarUser boolean, 
+	ConsultarUser boolean,
+
+	Consultar boolean,
+	Insertar boolean,
+	Actualizar boolean,
+	Modificar boolean,
+	Eliminar boolean,
+	Imprimir boolean
+)engine = InnoDB default charset=latin1;
+
+create table Aplicaciones_Permisos(
+	ID_Aplicacion varchar(10),
+    ID_Permiso varchar(10),
+    
+    primary key (ID_Aplicacion, ID_Permiso),
+    
+    foreign key (ID_Aplicacion) references Aplicaciones (ID_Aplicacion),
+    foreign key (ID_Permiso) references Permisos (ID_Permiso)
+)engine = InnoDB default charset=latin1;
+
