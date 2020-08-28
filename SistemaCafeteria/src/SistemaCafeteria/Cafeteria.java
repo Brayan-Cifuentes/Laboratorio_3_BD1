@@ -12,8 +12,8 @@ package SistemaCafeteria;
 public class Cafeteria extends javax.swing.JFrame {
 
     public static String Base_de_Datos = "jdbc:mysql://localhost/Sistema_Cafeteria";
-    public static String Usuario = "root";
-    public static String Clave = "admin";
+    public static String Usuario = "rex";
+    public static String Clave = "polloloco900";
     
     private Empresas VentanaEmpresas;
     private Proveedores VentanaProveedores;
@@ -29,6 +29,7 @@ public class Cafeteria extends javax.swing.JFrame {
     private Venta_Encabezado Venta_Encabezado;
     private Venta_Detalle Venta_Detalle;
     private Grupo Grupo_Empresa;
+    private Producto Venta_Producto;
     /**
      * Creates new form Cafeteria
      */
@@ -60,6 +61,7 @@ public class Cafeteria extends javax.swing.JFrame {
         jmi_Cliente = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -167,6 +169,14 @@ public class Cafeteria extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem11);
+
+        jMenuItem13.setText("Producto");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem13);
 
         jMenuBar1.add(jMenu1);
 
@@ -313,6 +323,12 @@ public class Cafeteria extends javax.swing.JFrame {
         jDesktop.add(Venta_Detalle);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+Venta_Producto = new Producto();
+jDesktop.add(Venta_Producto);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -358,6 +374,7 @@ public class Cafeteria extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

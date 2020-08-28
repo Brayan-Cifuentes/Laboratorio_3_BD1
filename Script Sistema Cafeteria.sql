@@ -1,4 +1,4 @@
--- Drop database Sistema_Cafeteria;
+Drop database Sistema_Cafeteria;
 create database Sistema_Cafeteria;
 use Sistema_Cafeteria;
 
@@ -89,12 +89,14 @@ create table Linea_Producto(
 )engine = InnoDB default charset=latin1;
 
 create table Productos(
-	ID_Producto varchar(10) primary key,
+	ID_Producto varchar(10)  primary key,
     Nombre_Producto varchar(35),
     ID_Marca varchar(10), /*Foranea*/
     ID_Linea varchar(10), /*Foranea*/
     Precio_Producto float,
     Costo_Producto float,
+    
+   
     
     /*Llaves Foraneas*/
     foreign key (ID_Marca) references Marca_Producto(ID_Marca),
